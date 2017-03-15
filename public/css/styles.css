@@ -3,3 +3,8 @@
             border: 1px solid #2c2c2c;
             margin: 10px 0;
         }
+
+        video {
+            border: 1px solid #2c2c2c;
+            width: 100%;
+        }

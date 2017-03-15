@@ -1,9 +1,39 @@
     $(document).ready(function() {
+
+        var i = 0;
+        var csvData = [];
+
+        var sendForm = function(url, data, callback) {
+            $.ajax({
+                type: 'POST',
+                enctype: 'multipart/form-data',
+                url: url,
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(result) {
+                    callback(result);
+                },
+                error: function(e) {
+                    console.log(e);
+                }
+            });
+        }
+
+        $('#videoFileListener').on('change', function() {
+            var videoFile = document.getElementById('videoFile');
+            $('video > source').attr('src', URL.createObjectURL(videoFile.files[0]));
+            $('video')[0].load();
+        });
+        
         var app = $('#app').hide();
         var progress = $('.progress').hide();
+
         $('#file').on('change', function() {
             progress.fadeIn('fast');
         });
+
         $('#uploadCsvBtn').on('click', function(e) {
             app.fadeOut('fast');
             e.preventDefault();
@@ -11,40 +41,40 @@
             var csvFile = file.files[0];
             var data = new FormData();
             data.append("file", csvFile);
-
-            console.log(data);
-            $.ajax({
-                type: 'POST',
-                enctype: 'multipart/form-data',
-                url: '/convert',
-                data: data,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function(data) {
-                    console.log(data)
-                    var formBody = $('#app > form');
-                    $.each(data, function(key, val) {
-                        console.log(val)
-                        var newID = 'page-' + key;
-                        formBody.append('<div class="col s12 page" id="' + newID + '"><ul></ul></div>');
-                        console.log("New ID", newID);
-                        $.each(val, function(key, val) {
-                            console.log(key);
-                            var newKey = key.replace(/\s/g, '_').replace(/\//g, '').toLowerCase().trim();
-                            var inputID = newKey + '_' + newID; 
-                            $('#' + newID + ' > ul').append('<li class="col s6"><label>' + key + '</label><input id="' + inputID + '" type="text" name="' + inputID + '" value="' + val + '"/></li>');
-                            $(newKey).val(val);
-                        });
-                    });
-                    formBody.append('<button id="uploadCsvBtn" class="btn waves-effect waves-light" type="submit" name="action">Submit<i class="material-icons right">send</i></button>')
-                    progress.fadeOut('slow', function() {
-                        app.fadeIn('slow')
-                    });
-                },
-                error: function(e) {
-                    console.log(e);
-                }
+            sendForm('/convert', data, function(result) {
+                csvData = result;
+                renderForm(csvData);
             });
+
+            var renderForm = function(csvData) {
+                var formBody = $('#app > form > ul');
+                formBody.text('');
+                $('#videoFile').val('');
+                console.log(i);
+                console.log(csvData.length);
+                if (i < csvData.length) {
+                    console.log(csvData[i]);
+                    $.each(csvData[i], function(key, val) {
+                        var newKey = key.replace(/\s/g, '_').replace(/\//g, '').toLowerCase().trim();
+                        var inputID = newKey;
+                        formBody.append('<li class="col s6"><label>' + key + '</label><input id="' + inputID + '" type="text" name="' + inputID + '" value="' + val + '"/></li>');
+                        $(newKey).val(val);
+                    });
+                    i++;
+                }
+                progress.fadeOut('slow', function() {
+                    app.fadeIn('slow')
+                });
+            }
+
+            $('#fileForm').on('submit', function(e) {
+                e.preventDefault();
+                var fileForm = new FormData(this);
+                sendForm('/upload', fileForm, function(result) {
+                    console.log(result);
+                    renderForm(csvData);
+                });
+            });
+
         });
     });

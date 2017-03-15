@@ -24,7 +24,7 @@ db.on('error', (err) => {
 
 // Routes
 //require('./routes/index')(app);
-//require('./routes/videos')(app);
+require('./routes/videos')(app);
 //require('./routes/images')(app);
 //require('./routes/documents')(app);
 //require('./routes/playlists')(app);
