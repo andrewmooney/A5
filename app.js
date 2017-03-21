@@ -24,16 +24,20 @@ db.on('error', (err) => {
 
 // Routes
 //require('./routes/index')(app);
-require('./routes/videos')(app);
+require('./routes/resources')(app);
 //require('./routes/images')(app);
 //require('./routes/documents')(app);
-//require('./routes/playlists')(app);
+require('./routes/playlists')(app);
 //require('./routes/tags')(app);
 //require('./routes/categories')(app);
 
 require('./routes/convertcsv')(app);
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'index.html'));
+});
+
+app.get('/upload', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'uploader.html'));
 });
 
 const server = app.listen(serverConfig.port);

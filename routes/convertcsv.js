@@ -5,7 +5,7 @@ import fs from 'fs';
 const uploads = multer({ dest: 'uploads/temp/' });
 
 module.exports = (app) => {
-    app.post('/convert', uploads.single('file'), (req, res) => {
+    app.post('/convert', uploads.single('csv-file'), (req, res) => {
         let jsonArr = [];
         console.log(req.file);
         csvtojson()

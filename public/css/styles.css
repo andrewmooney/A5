@@ -1,10 +1,103 @@
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #2c2c2c;
+            background: #fcfcfc;
+        }
+        
         .page {
             padding: 20px 0;
-            border: 1px solid #2c2c2c;
             margin: 10px 0;
         }
-
+        
         video {
             border: 1px solid #2c2c2c;
             width: 100%;
         }
+        
+        .container {
+            width: 1024px;
+            margin: auto auto;
+        }
+        /*.form-sm {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            top: 50%;
+            transform: translateY(50%);
+        }*/
+        
+        h3 {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 40px;
+            margin-left: 22px;
+        }
+
+        .form-lg .badge {
+            margin-top: 10px;
+        }        
+        
+        .page-1,
+        .page-2,
+        .page-3,
+        .page-4 {
+            display: none;
+        }
+        
+        .btn {
+            margin: 0 0 10px 10px;
+        }
+        
+        .card .card-action {
+            padding: 0 0 30px 24px;
+            border: none;
+        }
+        
+        .form-lg {
+            background: #fff;
+            padding: 20px;
+        }
+        /* 
+        .form-sm .file {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+        }
+
+        .rep-upload-container {
+            margin: 10px 0;
+            width: 100%;
+        }
+        
+        .rep-upload {
+            width: 250px;
+            height: 30px;
+            background: #a0221f;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            line-height: 30px;
+            cursor: pointer;
+            display: block;
+            margin: auto;
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+            border-radius: 2px;
+        }
+
+        .btn {
+            width: 250px;
+            height: 50px;
+            font-size: large;
+            border: none;
+            margin: 20px 0;
+            background: #1f9ea0;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            line-height: 30px;
+            cursor: pointer;
+            display: block;
+            margin: auto;
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+            border-radius: 2px
+        }*/
