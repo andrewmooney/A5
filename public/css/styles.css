@@ -10,8 +10,8 @@
         }
         
         video {
-            border: 1px solid #2c2c2c;
             width: 100%;
+            background: #2c2c2c;
         }
         
         .container {
@@ -56,6 +56,16 @@
         .form-lg {
             background: #fff;
             padding: 20px;
+        }
+
+        #poster {
+            width: 100%;
+            min-height: 200px;
+            background: #2c2c2c;
+        }
+
+        #poster > img {
+            width: 100%;
         }
         /* 
         .form-sm .file {

@@ -3,6 +3,7 @@ $(document).ready(function() {
     var prevPage;
     var currentPage = $('.page-' + pageIndex);
     var releaseForm = {};
+    var body = $("html, body");
 
     currentPage.css('display', 'block');
 
@@ -22,7 +23,7 @@ $(document).ready(function() {
             prevPage = currentPage;
             currentPage = $('.page-' + pageIndex);
             prevPage.fadeOut(400, function() {
-                currentPage.fadeIn()
+                currentPage.fadeIn();
             });
         }
     }
@@ -93,6 +94,7 @@ $(document).ready(function() {
         });
 
         var renderForm = function(csvData) {
+            body.stop().animate({scrollTop:0}, '500', 'swing');
             var formBody = $('#file-form > form > ul');
             app.fadeIn();
             $('#counter').text('File number ' + (i + 1) + ' of ' + csvData.length);
@@ -126,4 +128,29 @@ $(document).ready(function() {
         });
 
     });
+
+    /**
+     * Capture Screenshot from HTML5 Video
+     */
+
+    var screenGrab = function(video, scale, callback) {
+        var canvas = document.createElement("canvas");
+        canvas.width = video.videoWidth * scale;
+        canvas.height = video.videoHeight * scale;
+        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        var img = document.createElement("img");
+        img.src = canvas.toDataURL('image/jpeg', 0.6);
+        callback(img);
+    }
+
+    $('#capture').on('click', function(e){
+        e.preventDefault();
+        screenGrab($('video').get(0), 0.5, function(img){
+            $('#video_poster').val(img.src);
+            $('#poster').html(img);
+       });
+    });
+
+
 });

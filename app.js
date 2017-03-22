@@ -10,6 +10,8 @@ const app = express();
 const serverConfig = config.get('App.server'),
       dbConfig = config.get('App.dbConfig');
 
+app.set('manta', config.get('App.manta'));
+
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));

@@ -21,10 +21,10 @@
 
 <body>
     <div class="container">
-        <!--<a id="next" href="#">Next</a>-->
+
+<!-- Page -->
         <div class="form-sm page page-1 row">
             <div class="col s12 m12">
-
                 <div class="card z-depth-2">
                     <div class="card-content">
                         <span class="card-title">
@@ -59,6 +59,7 @@
             </div>
         </div>
 
+<!-- Page -->
         <div class="form-sm page page-2 row">
             <div class="card">
                 <div class="card-content">
@@ -86,17 +87,13 @@
             </div>
         </div>
 
+<!-- Page -->
         <div class="form-lg z-depth-2 page page-3 row">
             <h3 class="left">Resource File</h3>
             <span class="right new badge blue" data-badge-caption=""> <span id="counter"></span></span>
             <div id="file-form">
                 <form id="fileForm" class="col s12" method="POST" action="/upload">
-                    <div class="col s6">
-                        <video controls>
-                        <source src="" />
-                    </video>
-                    </div>
-                    <div class="file-field input-field col s6">
+                    <div class="file-field input-field col s12">
                         <div class="btn blue darken-2">
                             <span>Resource</span>
                             <input id="resourceFile" name="file" type="file" accept=".pdf, .jpg, .jpeg, .mp4, .doc, .docx, .mp3">
@@ -105,7 +102,22 @@
                             <input class="file-path validate" id="resourceFileListener" type="text">
                         </div>
                     </div>
+                    <div class="col s8">
+                        <video class="responsive-video" controls>
+                        <source src="" />
+                    </video>
+                    </div>
 
+                    <div class="col s4">
+                        <div id="poster">
+
+                        </div>
+                        <input id="video_poster" name="video_poster" type="hidden" value="">
+                        <p>
+                            To create a poster move the video control slider to desired position and click capture.
+                        </p>
+                        <button id="capture" class="btn waves-effect waves-light right">Capture</button>
+                    </div>
                     <ul>
 
                     </ul>
@@ -114,6 +126,7 @@
             </div>
         </div>
 
+<!-- Page -->
         <div class="form-sm page page-4">
             <div class="card">
                 <div class="card-content">
@@ -134,5 +147,4 @@
 
     </div>
 </body>
-
 </html>

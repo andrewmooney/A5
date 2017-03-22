@@ -6,6 +6,10 @@
         "mediastor": {
             "apiHost": "http://localhost:8081"
         },
+        "manta": {
+            "server": "https://stluc.manta.uqcloud.net",
+            "path": "/uqamoon1/public/"
+        },
         "dbConfig": {
             "host": "localhost",
             "port": 27017,

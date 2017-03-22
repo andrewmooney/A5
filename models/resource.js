@@ -9,7 +9,8 @@ const ResourceSchema = new Schema({
     length: { type: Number, required: true},
     mediastorId: { type: String, required: true},
     mediastorName: { type: String, required: true},
-    mediastorLocation: { type: String, required: false },
+    mediastorLocation: { type: String, required: true },
+    poster: { type: String, required: false },
     releaseForm: { 
         mediastorId: String,
         mediastorName: String,

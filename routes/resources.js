@@ -16,6 +16,37 @@ let storage = multer.diskStorage({
 const uploads = multer({ storage: storage });
 
 module.exports = (app) => {
+    app.get('/resources', (req, res) => {
+        Resource.find((err, resources) => {
+            if (err) return res.status(500).json({"message": err});
+            res.status(200).json(resources);
+        });
+    });
+    
+    app.get('/resources/:id', (req, res) => {
+        Resource.findById( req.params.id , (err, resources) => {
+            if (err) return res.status(500).json({"message": err});
+            res.status(200).json(resources);
+        });
+    });
+
+    app.get('/resources/type/:type', (req, res) => {
+        Resource.find({type: req.params.type}, (err, resources) => {
+            if (err) return res.status(500).json({"message": err});
+            res.status(200).json(resources);
+        });
+    });
+
+    app.delete('/resources/:id', (req, res) => {
+        Resource.findByIdAndRemove(req.params.id, (err) => {
+            if (err) return res.status(500).json(err);
+            res.status(200).json({"message": "Resource removed successfully"});
+        });
+    });
+
+/**
+ * This needs to be moved to a seperate controller...
+ */
     app.post('/upload', uploads.single('file'), (req, res) => {
         console.log(req.file);
         //console.log('Form Body');
@@ -45,6 +76,8 @@ module.exports = (app) => {
                 length: body.mediastor_dur,
                 mediastorId: body.mediastor_id,
                 mediastorName: body.mediastor_name,
+                mediastorLocation: `${app.settings.manta.server}${app.settings.manta.path}${body.file_type}s/`,
+                poster: req.body.video_poster,
                 releaseForm: {
                     mediastorId: req.body.releaseformid,
                     mediastorName: req.body.releaseformname
